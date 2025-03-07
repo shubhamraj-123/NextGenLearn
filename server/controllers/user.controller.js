@@ -1,9 +1,11 @@
 import { response } from "express";
-import User from "../models/user.model.js";
+import {User} from "../models/user.model.js";
 import bcrypt from "bcryptjs";
+import { generateToken } from "../utils/generateToken.js";
 
 export const register = async (req,res) => {
     try{
+        // console.log(req.body);
         const {name, email, password} = req.body; // shubham214
         if(!name || !email || !password){
             return res.status(400).json({
@@ -20,7 +22,7 @@ export const register = async (req,res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10); // salt no=10 default
-        // like password dega vhygyty@4# kuchh bhi
+        // like random has kr ke password dega vhygyty@4# kuchh bhi
 
         // creaing user with registration.
         await User.create({
@@ -66,6 +68,9 @@ export const login = async (req,res) => {
             });
         }
 
+        // Authentication.. ek bar login kr liye, to user logged in h ya nhi, kitna der tk login h, using jwt 
+        generateToken(res, user, `Welcome back ${user.name}`);
+
     }
     catch(error){
         console.log(error);
@@ -73,5 +78,5 @@ export const login = async (req,res) => {
             sucess: false,
             message: "Failed to login"
         })
-    }
+    }    
 }
