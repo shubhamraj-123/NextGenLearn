@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from "cors";
 import connectDB from './database/db.js';
 import userRoute from "./routes/user.route.js"
+import courseRoute from "./routes/course.route.js"
 
 dotenv.config({});
 
@@ -27,6 +28,7 @@ app.use(cors({
 // apis 
 // create ho rha like endpoint user
 app.use("/api/v1/user", userRoute);
+app.use("/api/v1/course", courseRoute);
 
 // "http://localhost:8080/home/api/v1/user/register" aise jata h api banne ke bad
 
