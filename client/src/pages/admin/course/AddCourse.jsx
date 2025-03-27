@@ -38,7 +38,8 @@ const AddCourse = () => {
 // for displaying toast
 useEffect(() => {
   if(isSuccess){
-    toast.success(data?.message || "Course created.")
+    toast.success(data?.message || "Course created.");
+    navigate("/admin/course");
   }
 }, [isSuccess,error])
 
@@ -47,7 +48,7 @@ useEffect(() => {
     <div className="flex-1 mx-10">
       <div className="mb-4">
         <h1 className="font-bold text-xl">
-          Let's addcourse, add some basic course details for your new course
+          Let's add course, add some basic course details for your new course
         </h1>
         <p className="text-sm">
           Easily add new courses and manage them seamlessly with our intuitive

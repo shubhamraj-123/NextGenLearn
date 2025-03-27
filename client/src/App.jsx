@@ -39,6 +39,9 @@ import Sidebar from "./pages/admin/Sidebar";
 import Dashboard from "./pages/admin/Dashboard";
 import CourseTable from "./pages/admin/course/CourseTable";
 import AddCourse from "./pages/admin/course/AddCourse";
+import EditCourse from "./pages/admin/course/EditCourse";
+import { NextGenLearnCarousel } from "./pages/student/NextGenLearnCarousel";
+import CreateLecture from "./pages/admin/lecture/CreateLecture";
 
 
 const appRouter = createBrowserRouter([
@@ -50,6 +53,7 @@ const appRouter = createBrowserRouter([
         path: "/",
         element: (
           <>
+          <NextGenLearnCarousel/>
             <HeroSection />
             <Courses />
           </>
@@ -90,6 +94,14 @@ const appRouter = createBrowserRouter([
           {
             path:"course/create",
             element:<AddCourse/>
+          },
+          {
+            path:"course/:courseId", // dynamic route creating
+            element:<EditCourse/>
+          },
+          {
+            path:"course/:courseId/lecture", // dynamic route creating
+            element:<CreateLecture/>
           }
         ]
       }
