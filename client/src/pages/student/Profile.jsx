@@ -1,3 +1,4 @@
+// export default Profile;
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2 } from "lucide-react";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Course from "./Course";
 import {
   useLoadUserQuery,
@@ -23,9 +24,10 @@ import { toast } from "sonner";
 const Profile = () => {
   const [name, setName] = useState("");
   const [profilePhoto, setProfilePhoto] = useState("");
+  const [open, setOpen] = useState(false); // Dialog control
 
   const { data, isLoading, refetch } = useLoadUserQuery();
-  // console.log(data);
+  
   const [
     updateUser,
     {
@@ -44,33 +46,39 @@ const Profile = () => {
 
   useEffect(() => {
     refetch();
-  }, [])
-  
-
-  useEffect(() => {
-    if (isSuccess) {
-        refetch();
-      toast.success(data.message || "Profile updated.");
-    }
-    if (isError) {
-      toast.error(error.message || "Failed to update profile.");
-    }
-  }, [error, updateUserData, isSuccess, isError]);
-
-  if(isLoading) return (<h1>Profile Loading...</h1>)
+  }, []);
 
   const user = data && data.user;
 
+  // Prefill the name when user and dialog open
+  useEffect(() => {
+    if (user && open) {
+      setName(user.name);
+    }
+  }, [user, open]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      refetch();
+      toast.success(updateUserData?.message || "Profile updated.");
+      setOpen(false); // close the dialog
+    }
+    if (isError) {
+      toast.error(error?.message || "Failed to update profile.");
+    }
+  }, [error, updateUserData, isSuccess, isError]);
+
+  if (isLoading) return <h1>Profile Loading...</h1>;
+
   const updateUserHandler = async () => {
-    // console.log(name,profilePhoto);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("profilePhoto", profilePhoto);
     await updateUser(formData);
   };
 
-  return  (
-    <div className="max-w-4xl mx-auto px-4 my-24">
+  return (
+    <div className="max-w-4xl mx-auto px-4 my-10">
       <h1 className="font-bold text-2xl text-center md:text-left">PROFILE</h1>
       <div className="flex flex-col md:flex-row items-center md:items-start gap-8 my-5">
         <div className="flex flex-col items-center">
@@ -109,7 +117,7 @@ const Profile = () => {
             </h1>
           </div>
 
-          <Dialog>
+          <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <Button size="sm" className="mt-2">
                 Edit Profile
@@ -145,10 +153,13 @@ const Profile = () => {
                 </div>
               </div>
               <DialogFooter>
-                <Button disabled={updateUserIsLoading} onClick={updateUserHandler}>
+                <Button
+                  disabled={updateUserIsLoading}
+                  onClick={updateUserHandler}
+                >
                   {updateUserIsLoading ? (
                     <>
-                      <Loader2 className="mr-2h-4 w-4 animate-spin" />
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       Please wait
                     </>
                   ) : (

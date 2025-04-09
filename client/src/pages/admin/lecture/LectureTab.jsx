@@ -53,7 +53,7 @@ const LectureTab = () => {
       setMediaProgress(true);
       try {
         const res = await axios.post(`${MEDIA_API}/upload-video`, formData, {
-          onuploadProgress: ({ loaded, total }) => {
+          onUploadProgress: ({ loaded, total }) => {
             setUploadProgress(Math.round((loaded * 100) / total));
           },
         });
