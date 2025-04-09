@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useEditCourseMutation, useGetCourseByIdQuery, usePublishCourseMutation } from "@/features/api/courseApi";
+import { useEditCourseMutation, useGetCourseByIdQuery, usePublishCourseMutation, useRemoveCourseMutation } from "@/features/api/courseApi";
 import { Loader2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -40,10 +40,15 @@ const CourseTab = () => {
   const {data:courseByIdData, isLoading:courseByIdLoading,refetch} = useGetCourseByIdQuery(courseId);
 
   const [publishCourse, {}] =usePublishCourseMutation();
-
+  // useEffect(() => {
+  //   if (courseId) {
+  //     refetch();
+  //   }
+  // }, [courseId]);
   
   useEffect(() => { // populate course // after getting course by id, it will show data in course edit page
     if(courseByIdData?.course){
+      refetch()
       const course = courseByIdData?.course;
       setInput({
         courseTitle: course.courseTitle,
@@ -64,6 +69,8 @@ const CourseTab = () => {
   
 
   const [editCourse,{data,isLoading,isSuccess,error}] = useEditCourseMutation();
+
+  const [removeCourse, { isLoading: isDeleting }] = useRemoveCourseMutation();
 
   const changeEventHandler = (e) => {
     const { name, value } = e.target;
@@ -114,6 +121,7 @@ const CourseTab = () => {
 
   useEffect(() => {
     if(isSuccess){
+      refetch()
       toast.success(data.message || "Course update.")
     }
     if(error){
@@ -121,8 +129,22 @@ const CourseTab = () => {
     }
   }, [isSuccess,error])
 
-  if(courseByIdLoading) return <Loader2 className="h-4 w-4 animate-spin"/>
+  useEffect(() => {
+    
+  }, [])
   
+
+  if(courseByIdLoading) return <Loader2 className="h-4 w-4 animate-spin"/>
+
+  const removeCourseHandler = async () => {
+    try {
+      const res = await removeCourse(courseId).unwrap();
+      toast.success(res.message || "Course deleted successfully");
+      navigate("/admin/course");
+    } catch (error) {
+      toast.error(error?.data?.message || "Failed to delete course");
+    }
+  }; 
 
   
   return (
@@ -139,7 +161,17 @@ const CourseTab = () => {
             <Button disabled={courseByIdData?.course.lectures.length === 0} variant="outline" onClick={() => publishStatusHandler(courseByIdData?.course.isPublished ? "false" : "true")}>
               {courseByIdData?.course.isPublished ? "Unpublish" : "Publish"}
             </Button>
-            <Button>Remove Course</Button>
+            <Button variant="destructive" onClick={removeCourseHandler} disabled={isDeleting}>
+              {isDeleting ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Deleting...
+                </>
+              ) : (
+                "Remove Course"
+              )}
+            </Button>
+
           </div>
         </CardHeader>
         <CardContent>

@@ -29,7 +29,7 @@ const RichTextEditor = ({ placeholder,input,setInput }) => {
 
 	return (
 		<JoditEditor
-        className='my-2'
+        className='my-2 dark:text-black'
 			ref={editor}
 			value={input.description}
 			config={config}
