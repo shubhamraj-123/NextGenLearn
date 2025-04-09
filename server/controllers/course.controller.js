@@ -29,8 +29,85 @@ export const createCourse = async (req,res) => {
         })
     }
 }
+// export const searchCourse = async(req,res) => {
+//     try {
+//         const {query = "", categories:[], sortByPrice = ""} = req.query;
+//         // create search query
+//         const searchCriteria = {
+//             isPublished:true,
+//             $or:[
+//                 {courseTitle: {$regex:query, $options:"i"}}, // like search for docker with char d then it will show also
+//                 {subTitle: {$regex:query, $options:"i"}},
+//                 {category: {$regex:query, $options:"i"}},
+//             ]
+//         }
+//         // if categories are selected
+//         if(categories.length>0){
+//             searchCriteria.category = {$in: categories};
+//         }
+//         // define sorting order
+//         const sortOptions = {};
+//         if(sortByPrice==="low"){
+//             sortOptions.coursePrice = 1; // sort by price in ascending order
+//         }
+//         else if(sortByPrice==="high"){
+//             sortOptions.coursePrice = -1; // sort by price in descending order
+//         }
+
+//         let courses = await Course.find(searchCriteria).populate({path:"creator", select:"name photoUrl"}).sort(sortOptions);
+        
+//         return res.status(200).json({
+//             success:true,
+//             courses: courses || []
+//         });
+//     } 
+//     catch (error) {
+//         console.log(error)
+//     }
+// }
 
 // get published course in landing page
+export const searchCourse = async (req, res) => {
+    try {
+        const { query = "", categories = "", sortByPrice = "" } = req.query;
+        const categoryArray = categories ? categories.split(",") : [];
+
+        const searchCriteria = {
+            isPublished: true,
+            $or: [
+                { courseTitle: { $regex: query, $options: "i" } },
+                { subTitle: { $regex: query, $options: "i" } },
+                { category: { $regex: query, $options: "i" } },
+            ],
+        };
+
+        if (categoryArray.length > 0) {
+            searchCriteria.category = { $in: categoryArray };
+        }
+
+        const sortOptions = {};
+        if (sortByPrice === "low") {
+            sortOptions.coursePrice = 1;
+        } else if (sortByPrice === "high") {
+            sortOptions.coursePrice = -1;
+        }
+
+        const courses = await Course.find(searchCriteria)
+            .populate({ path: "creator", select: "name photoUrl" })
+            .sort(sortOptions);
+
+        return res.status(200).json({
+            success: true,
+            courses: courses || [],
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Something went wrong during search.",
+        });
+    }
+};
+
 export const getPublishedCourse = async(_,res) => {
     try {
         const courses = await Course.find({isPublished:true}).populate({path:"creator",select:"name photoUrl"});
@@ -112,6 +189,47 @@ export const editCourse = async(req,res) => {
         })
     }
 }
+export const removeCourse = async (req, res) => {
+    try {
+        const { courseId } = req.params;
+
+        const course = await Course.findById(courseId).populate("lectures");
+
+        if (!course) {
+            return res.status(404).json({
+                message: "Course not found!",
+            });
+        }
+
+        // Delete course thumbnail from Cloudinary
+        if (course.courseThumbnail) {
+            const publicId = course.courseThumbnail.split("/").pop().split(".")[0];
+            await deleteMediaFromCloudinary(publicId);
+        }
+
+        // Delete all associated lectures
+        for (const lecture of course.lectures) {
+            if (lecture.publicId) {
+                await deleteVideoFromCloudinary(lecture.publicId);
+            }
+            await Lecture.findByIdAndDelete(lecture._id);
+        }
+
+        // Delete the course
+        await Course.findByIdAndDelete(courseId);
+
+        return res.status(200).json({
+            message: "Course and all associated lectures removed successfully.",
+        });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: "Failed to remove course.",
+        });
+    }
+};
+
 
 export const getCourseById = async (req,res) => {
     try {

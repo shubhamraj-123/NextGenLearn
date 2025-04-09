@@ -10,6 +10,6 @@ const courseProgressSchema = new mongoose.Schema({
     courseId:{type:String},
     completed:{type:Boolean},
     lectureProgress:[lectureProgressSchema]
-});
+},{timestamps:true});
 
 export const CourseProgress = mongoose.model("CourseProgress", courseProgressSchema);
