@@ -45,6 +45,13 @@ import CreateLecture from "./pages/admin/lecture/CreateLecture";
 import EditLecture from "./pages/admin/lecture/EditLecture";
 import CourseDetail from "./pages/student/CourseDetail";
 import CourseProgress from "./pages/student/CourseProgress";
+import SearchPage from "./pages/student/SearchPage";
+import { AdminRoute, AutheticatedUser, ProtectedRoute } from "./components/ProtectedRoutes";
+import PurchaseCourseProtectedRoute from "./components/PurchaseCourseProtectedRoute";
+import { ThemeProvider } from "./components/ThemeProvider";
+import Footer from "./components/Footer";
+import DynamicCodeBlock from "./pages/DynamicCodeBlock";
+import CompanyLogoCarousel from "./pages/CompanyLogoSlider";
 
 
 const appRouter = createBrowserRouter([
@@ -59,42 +66,57 @@ const appRouter = createBrowserRouter([
           <NextGenLearnCarousel/>
             <HeroSection />
             <Courses />
+            <DynamicCodeBlock/>
+            <CompanyLogoCarousel/>
+            <Footer/>
           </>
         ),
       },
       {
         path: "login",
         element: (
-          <Login/>
+          <AutheticatedUser><Login/></AutheticatedUser>
         ),
       },
       {
         path: "my-learning",
         element: (
-          <MyLearning />
+          <ProtectedRoute><MyLearning /></ProtectedRoute>
         ),
       },
       {
         path: "profile",
         element: (
-          <Profile />
+          <ProtectedRoute><Profile /></ProtectedRoute>
+        ),
+      },
+      {
+        path: "course/search",
+        element: (
+          <ProtectedRoute><SearchPage/></ProtectedRoute>
         ),
       },
       {
         path: "course-detail/:courseId",
         element: (
-          <CourseDetail />
+          <ProtectedRoute><CourseDetail /></ProtectedRoute> // double security b/c when user logged in goes to http://localhost:5173/course-progress/67e5b369da43ca3446876f26 then they able to go then user will not pay
         ),
       },
       {
         path: "course-progress/:courseId",
-        element: <CourseProgress/>
+        element: (
+          <ProtectedRoute>
+            <PurchaseCourseProtectedRoute>
+              <CourseProgress/>
+            </PurchaseCourseProtectedRoute>
+          </ProtectedRoute>
+        )
       },    
 
       // admin routes start from here
       {
         path:"admin",
-        element:<Sidebar/>,
+        element:<AdminRoute><Sidebar/></AdminRoute>,
         children:[
           {
             path:"dashboard",
@@ -130,7 +152,9 @@ const appRouter = createBrowserRouter([
 function App() {
   return (
     <main>
-      <RouterProvider router={appRouter} />
+      <ThemeProvider>
+        <RouterProvider router={appRouter} />
+      </ThemeProvider>
     </main>
   );
 }
