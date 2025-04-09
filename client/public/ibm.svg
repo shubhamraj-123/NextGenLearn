@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="210" height="84" viewBox="0 0 210 84">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #1f70c1;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g>
+    <polygon id="Rectangle-path" class="cls-1" points="52.78 59.1 72.05 59.1 72.05 61.86 52.78 61.86 52.78 59.1"/>
+    <polygon id="Rectangle-path-2" data-name="Rectangle-path" class="cls-1" points="52.78 53.82 72.05 53.82 72.05 56.58 52.78 56.58 52.78 53.82"/>
+    <polygon id="Rectangle-path-3" data-name="Rectangle-path" class="cls-1" points="58.28 48.54 66.54 48.54 66.54 51.3 58.28 51.3 58.28 48.54"/>
+    <polygon id="Rectangle-path-4" data-name="Rectangle-path" class="cls-1" points="58.28 43.26 66.54 43.26 66.54 46.02 58.28 46.02 58.28 43.26"/>
+    <polygon id="Rectangle-path-5" data-name="Rectangle-path" class="cls-1" points="58.28 37.98 66.54 37.98 66.54 40.74 58.28 40.74 58.28 37.98"/>
+    <polygon id="Rectangle-path-6" data-name="Rectangle-path" class="cls-1" points="58.28 32.69 66.54 32.69 66.54 35.45 58.28 35.45 58.28 32.69"/>
+    <rect id="Rectangle-path-7" data-name="Rectangle-path" class="cls-1" x="52.78" y="27.41" width="19.26" height="2.77"/>
+    <rect id="Rectangle-path-8" data-name="Rectangle-path" class="cls-1" x="52.78" y="22.13" width="19.26" height="2.77"/>
+  </g>
+  <g>
+    <path id="Shape" class="cls-1" d="M74.8,56.58h29.63c.5-.85.87-1.79,1.1-2.77h-30.73v2.77Z"/>
+    <path id="Shape-2" data-name="Shape" class="cls-1" d="M102.12,43.26h-21.82v2.77h24.12c-.63-1.06-1.4-1.99-2.31-2.77Z"/>
+    <path id="Shape-3" data-name="Shape" class="cls-1" d="M80.3,37.98v2.77h21.82c.92-.78,1.7-1.71,2.31-2.77h-24.12Z"/>
+    <path id="Shape-4" data-name="Shape" class="cls-1" d="M104.42,27.41h-29.63v2.77h30.73c-.26-.98-.63-1.91-1.1-2.77Z"/>
+    <path id="Shape-5" data-name="Shape" class="cls-1" d="M95.32,22.13h-20.52v2.77h27.6c-1.84-1.71-4.35-2.77-7.08-2.77Z"/>
+    <rect id="Rectangle-path-9" data-name="Rectangle-path" class="cls-1" x="80.3" y="32.69" width="8.25" height="2.77"/>
+    <path id="Shape-6" data-name="Shape" class="cls-1" d="M96.82,35.45h8.64c.25-.88.37-1.82.37-2.77h-9.01v2.77h0Z"/>
+    <polygon id="Rectangle-path-10" data-name="Rectangle-path" class="cls-1" points="80.3 48.54 88.55 48.54 88.55 51.3 80.3 51.3 80.3 48.54"/>
+    <path id="Shape-7" data-name="Shape" class="cls-1" d="M96.82,48.54v2.77h9.01c0-.95-.13-1.88-.37-2.77h-8.64Z"/>
+    <path id="Shape-8" data-name="Shape" class="cls-1" d="M74.8,61.84l20.52.03c2.75,0,5.23-1.06,7.09-2.77h-27.61v2.74Z"/>
+  </g>
+  <g>
+    <polygon id="Rectangle-path-11" data-name="Rectangle-path" class="cls-1" points="107.83 59.1 121.59 59.1 121.59 61.86 107.83 61.86 107.83 59.1"/>
+    <polygon id="Rectangle-path-12" data-name="Rectangle-path" class="cls-1" points="107.83 53.82 121.59 53.82 121.59 56.58 107.83 56.58 107.83 53.82"/>
+    <polygon id="Rectangle-path-13" data-name="Rectangle-path" class="cls-1" points="113.32 48.54 121.59 48.54 121.59 51.3 113.32 51.3 113.32 48.54"/>
+    <polygon id="Rectangle-path-14" data-name="Rectangle-path" class="cls-1" points="113.32 43.26 121.59 43.26 121.59 46.02 113.32 46.02 113.32 43.26"/>
+    <polygon id="Shape-9" data-name="Shape" class="cls-1" points="125.41 27.41 107.83 27.41 107.83 30.17 126.37 30.17 125.41 27.41"/>
+    <polygon id="Shape-10" data-name="Shape" class="cls-1" points="123.59 22.13 107.83 22.13 107.83 24.9 124.54 24.9 123.59 22.13"/>
+    <polygon id="Rectangle-path-15" data-name="Rectangle-path" class="cls-1" points="138.09 59.1 151.86 59.1 151.86 61.86 138.09 61.86 138.09 59.1"/>
+    <polygon id="Rectangle-path-16" data-name="Rectangle-path" class="cls-1" points="138.09 53.82 151.86 53.82 151.86 56.58 138.09 56.58 138.09 53.82"/>
+    <polygon id="Rectangle-path-17" data-name="Rectangle-path" class="cls-1" points="138.09 48.54 146.36 48.54 146.36 51.3 138.09 51.3 138.09 48.54"/>
+    <polygon id="Rectangle-path-18" data-name="Rectangle-path" class="cls-1" points="138.09 43.26 146.36 43.26 146.36 46.02 138.09 46.02 138.09 43.26"/>
+    <polygon id="Shape-11" data-name="Shape" class="cls-1" points="138.09 40.74 146.36 40.74 146.36 37.98 138.09 37.98 138.09 37.98 130.62 37.98 129.84 40.21 129.07 37.98 121.59 37.98 121.59 37.98 113.32 37.98 113.32 40.74 121.59 40.74 121.59 38.2 122.46 40.74 137.22 40.74 138.09 38.2 138.09 40.74"/>
+    <polygon id="Shape-12" data-name="Shape" class="cls-1" points="146.36 32.69 132.44 32.69 131.49 35.45 146.36 35.45 146.36 32.69"/>
+    <polygon id="Shape-13" data-name="Shape" class="cls-1" points="136.1 22.13 135.15 24.9 151.86 24.9 151.86 22.13 136.1 22.13"/>
+    <polygon id="Shape-14" data-name="Shape" class="cls-1" points="129.84 61.84 130.79 59.1 128.89 59.1 129.84 61.84"/>
+    <polygon id="Shape-15" data-name="Shape" class="cls-1" points="128.02 56.58 131.67 56.58 132.65 53.82 127.04 53.82 128.02 56.58"/>
+    <polygon id="Shape-16" data-name="Shape" class="cls-1" points="126.16 51.3 133.52 51.3 134.49 48.54 125.19 48.54 126.16 51.3"/>
+    <polygon id="Shape-17" data-name="Shape" class="cls-1" points="124.32 46.02 135.38 46.02 136.32 43.26 123.36 43.26 124.32 46.02"/>
+    <polygon id="Shape-18" data-name="Shape" class="cls-1" points="113.32 35.45 128.19 35.45 127.24 32.69 113.32 32.69 113.32 35.45"/>
+    <polygon id="Shape-19" data-name="Shape" class="cls-1" points="133.32 30.17 151.86 30.17 151.86 27.41 134.27 27.41 133.32 30.17"/>
+  </g>
+</svg>
