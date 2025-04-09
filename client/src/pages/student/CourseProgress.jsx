@@ -109,7 +109,7 @@ const CourseProgress = () => {
             {courseDetails?.lectures.map((lecture) => (
               <Card
                 key={lecture._id}
-                className={`mb-3 hover:cursor-pointer transition transform ${lecture._id === currentLecture?._id ? 'bg-gray-200' : 'dark:bg-gray-800'}`}
+                className={`mb-3 hover:cursor-pointer transition transform ${lecture._id === currentLecture?._id ? 'bg-gray-200 dark:bg-gray-800' : ''}`}
                 onClick={() => handleSelectLecture(lecture)}
               >
                 {/* p-4 */}
