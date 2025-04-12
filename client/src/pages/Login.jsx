@@ -20,6 +20,16 @@ import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectGroup,
+  SelectLabel,
+  SelectItem,
+} from "@/components/ui/select";
+
 // import { toast } from 'react-toastify';
 
 const Login = () => {
@@ -27,6 +37,7 @@ const Login = () => {
     name: "",
     email: "",
     password: "",
+    role: "student", // Default role
   });
   const [loginInput, setLoginInput] = useState({ email: "", password: "" });
 
@@ -72,7 +83,7 @@ const Login = () => {
   useEffect(() => {
     if (registerIsSuccess && registerData) {
       toast.success(registerData.message || "Signup successful.");
-      setSignupInput({ name: "", email: "", password: "" }); // Clear signup fields
+      setSignupInput({ name: "", email: "", password: "", role: "student" }); // Clear signup fields
       setTabValue("login"); // Switch to login tab
     }
     if (registerError) {
@@ -105,7 +116,7 @@ const Login = () => {
       <Tabs value={tabValue} onValueChange={setTabValue} className="w-[400px]">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="signup">Signup</TabsTrigger>
-          <TabsTrigger value="login" >Login</TabsTrigger>
+          <TabsTrigger value="login">Login</TabsTrigger>
         </TabsList>
         <TabsContent value="signup">
           <Card>
@@ -123,7 +134,7 @@ const Login = () => {
                   name="name"
                   value={signupInput.name}
                   onChange={(e) => changeInputHandler(e, "signup")}
-                  onKeyDown={(e)=> handleKeyDown(e,'signup')}
+                  onKeyDown={(e) => handleKeyDown(e, "signup")}
                   placeholder="e.g. Shubham Raj"
                   required={true}
                 />
@@ -135,7 +146,7 @@ const Login = () => {
                   name="email"
                   value={signupInput.email}
                   onChange={(e) => changeInputHandler(e, "signup")}
-                  onKeyDown={(e)=> handleKeyDown(e,'signup')}
+                  onKeyDown={(e) => handleKeyDown(e, "signup")}
                   placeholder="e.g. shubhamraj675@gmail.com"
                   required={true}
                 />{" "}
@@ -148,10 +159,30 @@ const Login = () => {
                   name="password"
                   value={signupInput.password}
                   onChange={(e) => changeInputHandler(e, "signup")}
-                  onKeyDown={(e)=> handleKeyDown(e,'signup')}
+                  onKeyDown={(e) => handleKeyDown(e, "signup")}
                   placeholder="e.g. xyz@234"
                   required={true}
                 />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="role">Role</Label>
+                <Select
+                  value={signupInput.role || "student"}
+                  onValueChange={(value) =>
+                    setSignupInput({ ...signupInput, role: value })
+                  }
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Select Role</SelectLabel>
+                      <SelectItem value="student">Student</SelectItem>
+                      <SelectItem value="instructor">Instructor</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </div>
             </CardContent>
             <CardFooter>
@@ -159,7 +190,6 @@ const Login = () => {
                 disabled={registerIsLoading}
                 onClick={(e) => handleRegistration("signup")}
                 className="w-full"
-                
               >
                 {registerIsLoading ? (
                   <>
@@ -190,7 +220,7 @@ const Login = () => {
                   name="email"
                   value={loginInput.email}
                   onChange={(e) => changeInputHandler(e, "login")}
-                  onKeyDown={(e)=> handleKeyDown(e,"login")}
+                  onKeyDown={(e) => handleKeyDown(e, "login")}
                   placeholder="e.g. shubhamraj675@gmail.com"
                   required={true}
                 />
@@ -202,7 +232,7 @@ const Login = () => {
                   name="password"
                   value={loginInput.password}
                   onChange={(e) => changeInputHandler(e, "login")}
-                  onKeyDown={(e)=> handleKeyDown(e,"login")}
+                  onKeyDown={(e) => handleKeyDown(e, "login")}
                   placeholder="e.g. xyz@234"
                   required={true}
                 />{" "}
