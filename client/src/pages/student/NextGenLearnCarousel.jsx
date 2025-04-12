@@ -9,24 +9,27 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import img1 from "@/assets/img1.png";
 // import img3 from "@/assets/img3.jpg";
 import img2 from "@/assets/img2.jpg";
+import img4 from "@/assets/img4.jpg";
+import img6 from "@/assets/img6.jpg"
 
 const slides = [
   {
     title: "Empower Your Future with NextGenLearn",
     description: "Unlock your potential with cutting-edge courses and expert-led training. Start learning today and shape tomorrow.",
-    image: "https://blogassets.leverageedu.com/blog/wp-content/uploads/2020/05/23151218/BA-Courses.png",
+    image:img1,
   },
   {
     title: "Learn Anytime, Anywhere",
     description: "Access high-quality content on your schedule. Flexible learning designed to fit your busy life.",
-    image: "https://schoolings.org/wp-content/uploads/Courses-Offered-in-UNIJOS.jpg",
+    image: img4,
   },
   {
     title: "Join a Community of Lifelong Learners",
     description: "Collaborate, grow, and succeed with peers and mentors from around the globe.",
-    image: "https://cdn.prod.website-files.com/5e318ddf83dd66608255c3b6/62b1de2e8e142538f54863b6_What%20is%20course%20design.jpg",
+    image: img6,
   },
   {
     title: "Stay Ahead with Industry-Relevant Skills",
