@@ -8,8 +8,8 @@ export const register = async (req, res) => {
   const passwordRegex = /^[A-Z][A-Za-z\d@$!%*?&]{7,}$/; // First letter uppercase, total 8+ characters
   try {
     // console.log(req.body);
-    const { name, email, password } = req.body; // shubham214
-    if (!name || !email || !password) {
+    const { name, email, password, role } = req.body; // shubham214
+    if (!name || !email || !password || !role) {
       return res.status(400).json({
         success: false,
         message: "All fields are required.",
@@ -51,6 +51,7 @@ export const register = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      role,   
     });
     return res.status(201).json({
       sucess: true,
