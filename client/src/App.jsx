@@ -52,6 +52,8 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import Footer from "./components/Footer";
 import DynamicCodeBlock from "./pages/DynamicCodeBlock";
 import CompanyLogoCarousel from "./pages/CompanyLogoSlider";
+import ContactForm from "./pages/ContactForm";
+import About from "./pages/About";
 
 
 const appRouter = createBrowserRouter([
@@ -111,6 +113,14 @@ const appRouter = createBrowserRouter([
             </PurchaseCourseProtectedRoute>
           </ProtectedRoute>
         )
+      },
+      {
+        path:"contact",
+        element:<ContactForm/>
+      }, 
+      {
+        path:"about",
+        element:<About/>
       },    
 
       // admin routes start from here
