@@ -16,6 +16,9 @@ export const generateToken = (res, user, message) => {
     }).json({
         success: true,
         message,
-        user,
+        user: {
+          ...user.toObject(),         // Converting Mongoose document to plain object
+          password: undefined,        // & password is not sent back in the response
+        },
     }); 
 };
