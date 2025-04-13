@@ -2,8 +2,8 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import { userLoggedIn, userLoggedOut } from "../authSlice";
 
-// const USER_API = "http://localhost:8080/api/v1/user/"
-const USER_API = "https://nextgenlearn.onrender.com/api/v1/user/";
+const USER_API = "http://localhost:8080/api/v1/user/"
+// const USER_API = "https://nextgenlearn.onrender.com/api/v1/user/";
 
 export const authApi = createApi({
     reducerPath:"authApi",
@@ -29,9 +29,6 @@ export const authApi = createApi({
             async onQueryStarted(_, {queryFulfilled, dispatch}){
                 try{
                     const result = await queryFulfilled;
-                    console.log("key", result);
-                    
-                    localStorage.setItem("User_token",result.token)
                     //console.log(result)
                     dispatch(userLoggedIn({user:result.data.user}))
                 }
