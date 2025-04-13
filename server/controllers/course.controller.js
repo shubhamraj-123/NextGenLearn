@@ -231,27 +231,61 @@ export const removeCourse = async (req, res) => {
 };
 
 
-export const getCourseById = async (req,res) => {
-    try {
-        const {courseId} = req.params;
+// export const getCourseById = async (req,res) => {
+//     try {
+//         const {courseId} = req.params;
 
-        const course = await Course.findById(courseId);
-        if(!course){
-            return res.status(404).json({
-                message:"Course not found!"
-            })
-        }
-        return res.status(200).json({
-            course
-        })
-    } 
-    catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            message:"Failed to get course by id"
-        })
+//         const course = await Course.findById(courseId);
+//         if(!course){
+//             return res.status(404).json({
+//                 message:"Course not found!"
+//             })
+//         }
+//         return res.status(200).json({
+//             course
+//         })
+//     } 
+//     catch (error) {
+//         console.log(error);
+//         return res.status(500).json({
+//             message:"Failed to get course by id"
+//         })
+//     }
+// }
+
+export const getCourseById = async (req, res) => {
+    try {
+      const { courseId } = req.params;
+  
+      const course = await Course.findById(courseId).populate({
+        path: "lectures",
+        select: "videoUrl title", // select relevant fields
+      });
+  
+      if (!course) {
+        return res.status(404).json({
+          message: "Course not found!",
+        });
+      }
+  
+      // if no lectures OR any lecture is missing videoUrl => false
+      const allLecturesHaveVideo =
+        course.lectures.length > 0 &&
+        course.lectures.every(
+          (lecture) => lecture.videoUrl && lecture.videoUrl.trim() !== ""
+        );
+          
+      return res.status(200).json({
+        course,
+        allLecturesHaveVideo,
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        message: "Failed to get course by id",
+      });
     }
-}
+};
 
 export const createLecture = async (req,res) => {
     try {
