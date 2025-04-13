@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const CONTACT_API = "http://localhost:8080/api/v1/contact";
-// const CONTACT_API = "https://nextgenlearn.onrender.com/api/v1/contact";
+// const CONTACT_API = "http://localhost:8080/api/v1/contact";
+const CONTACT_API = `${import.meta.env.VITE_BASE_URL}/api/v1/contact`;
 
 export const contactApi = createApi({
   reducerPath: "contactApi",
