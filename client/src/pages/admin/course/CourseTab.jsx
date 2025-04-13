@@ -145,7 +145,6 @@ const CourseTab = () => {
       toast.error(error?.data?.message || "Failed to delete course");
     }
   }; 
-
   
   return (
     <div>
@@ -158,7 +157,7 @@ const CourseTab = () => {
             </CardDescription>
           </div>
           <div className="space-x-2">
-            <Button disabled={courseByIdData?.course.lectures.length === 0} variant="outline" onClick={() => publishStatusHandler(courseByIdData?.course.isPublished ? "false" : "true")}>
+            <Button disabled={!courseByIdData?.allLecturesHaveVideo} variant="outline" onClick={() => publishStatusHandler(courseByIdData?.course.isPublished ? "false" : "true")}>
               {courseByIdData?.course.isPublished ? "Unpublish" : "Publish"}
             </Button>
             <Button variant="destructive" onClick={removeCourseHandler} disabled={isDeleting}>
