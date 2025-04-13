@@ -7,8 +7,12 @@ import {
   Bell,
   Linkedin,
   Facebook,
+  Bot,
+  X,
 } from "lucide-react";
 import { toast } from "sonner";
+import React, { useState } from "react";
+
 // import { useState } from "react";
 
 // const [email, setEmail] = useState("");
@@ -23,6 +27,7 @@ import { toast } from "sonner";
 // };
 
 const Footer = () => {
+  const [showChat, setShowChat] = useState(false);
   return (
     <footer className="bg-white dark:bg-[#1c2949] mt-8 text-black dark:text-white">
       <div className="flex flex-col md:flex-row justify-between gap-8 py-10 max-w-screen-xl mx-auto px-4">
@@ -63,7 +68,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
         {/* Newsletter */}
         <div className="md:w-1/3">
           <h2 className="text-xl font-semibold underline underline-offset-4 decoration-blue-500 mb-4">
@@ -88,7 +92,6 @@ const Footer = () => {
             </button>
           </div>
         </div>
-
         {/* Google Map */}
         <div className="md:w-1/3">
           <iframe
@@ -102,6 +105,30 @@ const Footer = () => {
             title="Google Map"
           ></iframe>
         </div>
+
+        <div
+          className="fixed bottom-6 right-6 z-50 w-15 h-15 flex items-center justify-center rounded-full bg-blue-800 hover:bg-blue-900 cursor-pointer transition duration-300"
+          onClick={() => setShowChat((prev) => !prev)}
+        >
+          <img src="/chatbot.jpeg" alt="Chatbot Icon" className="w-10 h-10 rounded-full" />
+        </div>
+
+        {showChat && (
+          <div className="fixed bottom-20 right-6 w-80 h-[500px] bg-white dark:bg-[#1c2949] rounded-xl shadow-xl border border-gray-300 dark:border-gray-700 z-50 overflow-hidden">
+            <div className="flex items-center justify-between p-3 bg-blue-800 text-white rounded-t-xl">
+              <span className="font-semibold">NextGen Chatbot</span>
+              <button onClick={() => setShowChat(false)} className="text-sm cursor-pointer">
+                {/* ✖ */}
+                <X size={20} />
+              </button>
+            </div>
+            <iframe
+              src="src/chatbot/index.html"
+              title="Chatbot"
+              className="w-full h-full border-none"
+            />
+          </div>
+        )}
       </div>
 
       {/* Footer Bottom */}
