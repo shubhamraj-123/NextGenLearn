@@ -26,7 +26,7 @@ app.use(cookieParser());
 // app.use(cors());
 app.use(cors(
    {
-    // origin:"http://localhost:8080",
+    origin:"http://localhost:5173",
     origin:"https://next-gen-learn-jtda.vercel.app",
     credentials:true
 }
