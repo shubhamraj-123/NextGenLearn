@@ -82,19 +82,19 @@ const Login = () => {
 
   useEffect(() => {
     if (registerIsSuccess && registerData) {
-      toast.success(registerData.message || "Signup successful.");
+      toast.success(registerData?.message || "Signup successful.");
       setSignupInput({ name: "", email: "", password: "", role: "student" }); // Clear signup fields
       setTabValue("login"); // Switch to login tab
     }
     if (registerError) {
-      toast.error(registerError.data.message || "Signup failed");
+      toast.error(registerError?.data?.message || "Signup failed");
     }
     if (loginIsSuccess && loginData) {
-      toast.success(loginData.message || "Login successful.");
+      toast.success(loginData?.message || "Login successful.");
       navigate("/");
     }
     if (loginError) {
-      toast.error(loginError.data.message || "Login failed");
+      toast.error(loginError?.data?.message || "Login failed");
     }
   }, [
     loginIsLoading,
