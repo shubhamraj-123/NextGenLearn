@@ -1,5 +1,5 @@
-// const API_KEY = 'AIzaSyD6HY62B3x8TPth4ZlVe--dWdsqgoZqLHc'; 
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+const API_KEY = 'AIzaSyD6HY62B3x8TPth4ZlVe--dWdsqgoZqLHc'; 
+// const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 // Replace with your actual Gemini API key – this stores the API key to authenticate requests to the Gemini API.
 
 const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
