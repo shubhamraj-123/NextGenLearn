@@ -103,7 +103,16 @@ export const login = async (req, res) => {
 
 export const logout = async (_, res) => {
   try {
-    return res.status(200).cookie("token", "", { maxAge: 0 }).json({
+    // return res.status(200).cookie("token", "", { maxAge: 0 }).json({
+    //   message: "Logged out successfully.",
+    //   success: true,
+    // });
+    res.clearCookie("token", {
+      httpOnly: true,  // Cookie should only be accessible via HTTP requests
+      sameSite: "None",  // For cross-origin requests
+      secure: true,      // For production (only send over HTTPS)
+    });
+    return res.status(200).json({
       message: "Logged out successfully.",
       success: true,
     });

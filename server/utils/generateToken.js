@@ -9,11 +9,16 @@ export const generateToken = (res, user, message) => {
     .status(200)
     .cookie("token", token, {
       httpOnly: true,
-      sameSite: "strict",
+      // sameSite: "strict",
+      secure: true, // for production HTTPS
+      sameSite: "None",
       maxAge: 24 * 60 * 60 * 1000, // 1 day
     }).json({
         success: true,
         message,
-        user,
+        user: {
+          ...user.toObject(),         // Converting Mongoose document to plain object
+          password: undefined,        // & password is not sent back in the response
+        },
     }); 
 };
