@@ -171,7 +171,7 @@ export const createCheckoutSession = async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: `https://next-gen-learn-jtda.vercel.app/course-progress/${courseId}`, // once payment successful redirect to course progress page
+      success_url: `https://next-gen-learn-jtda.vercel.app`, // once payment successful redirect to course progress page
       cancel_url: `https://next-gen-learn-jtda.vercel.app/course-detail/${courseId}`,
       metadata: {
         courseId,
