@@ -123,7 +123,7 @@ const Footer = () => {
               </button>
             </div>
             <iframe
-              src="src/chatbot/index.html"
+              src="/chatbot/index.html"
               title="Chatbot"
               className="w-full h-full border-none"
             />
